@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "User" (
-    "id" TEXT NOT NULL,
+    "id" SERIAL NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "name" TEXT NOT NULL,
@@ -10,14 +10,13 @@ CREATE TABLE "User" (
 
 -- CreateTable
 CREATE TABLE "Invoice" (
-    "id" TEXT NOT NULL,
+    "id" SERIAL NOT NULL,
     "vendor_name" TEXT NOT NULL,
-    "amount" TEXT NOT NULL,
-    "name" INTEGER NOT NULL,
+    "amount" INTEGER NOT NULL,
     "due_date" TIMESTAMP(3) NOT NULL,
     "description" TEXT NOT NULL,
     "paid" BOOLEAN NOT NULL,
-    "user_id" TEXT,
+    "user_id" INTEGER,
 
     CONSTRAINT "Invoice_pkey" PRIMARY KEY ("id")
 );

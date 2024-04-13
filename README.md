@@ -1,33 +1,17 @@
-## Installation
-
-```bash
-$ npm install
-```
+## .env file
+DATABASE_URL=postgresql://{user}:{password}@localhost:5432/invoices
+JWT_KEY={valid jwt secret/private key}
 
 ## Running the app
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+$ npm install
 ```
-
-## Test
-
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+$ npx prisma migrate dev --name init
+```
+```bash
+$ npm start
 ```
 
 ## Support

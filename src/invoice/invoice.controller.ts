@@ -30,6 +30,10 @@ export class InvoiceController {
     }
 
     const invoicesAmount = await this.invoiceService.invoices({
+      where: {
+        paid: false,
+        user_id: userID,
+      },
       select: {
         amount: true,
       },

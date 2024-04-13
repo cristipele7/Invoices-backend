@@ -5,8 +5,7 @@ import * as bcrypt from 'bcryptjs';
 import { AuthDto } from './auth.dto';
 
 export interface JwtStrategyPayload {
-  sub: number;
-  email: string;
+  id: number;
 }
 
 @Injectable()
@@ -35,11 +34,12 @@ export class AuthService {
     }
 
     const payload: JwtStrategyPayload = {
-      email: authUser.email,
-      sub: dbUser.id,
+      id: dbUser.id,
     };
 
+    delete dbUser.password;
     return {
+      ...dbUser,
       accessToken: this.jwtService.sign(payload),
     };
   }

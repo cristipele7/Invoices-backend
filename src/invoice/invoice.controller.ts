@@ -1,17 +1,34 @@
 import { BadRequestException, Controller, Get, Param } from '@nestjs/common';
 import { InvoiceService } from './invoice.service';
+import { PrismaUser } from 'src/auth/auth.decorators';
 
 @Controller('invoice')
 export class InvoiceController {
   constructor(private readonly invoiceService: InvoiceService) {}
 
   @Get('/')
-  async getInvoices() {
-    return this.invoiceService.invoices();
+  async getInvoices(@PrismaUser() userID: number) {
+    if (!userID) {
+      throw new BadRequestException(
+        "You don't have permission to access invoices!",
+      );
+    }
+
+    return this.invoiceService.invoices({
+      where: {
+        user_id: userID,
+      },
+    });
   }
 
   @Get('/total')
-  async getTotalAmountOfInvoices() {
+  async getTotalAmountOfInvoices(@PrismaUser() userID: number) {
+    if (!userID) {
+      throw new BadRequestException(
+        "You don't have permission to access invoices!",
+      );
+    }
+
     const invoicesAmount = await this.invoiceService.invoices({
       select: {
         amount: true,
@@ -27,7 +44,13 @@ export class InvoiceController {
   }
 
   @Get('/:id')
-  async getInvoiceByID(@Param('id') id: string) {
+  async getInvoiceByID(@PrismaUser() userID: number, @Param('id') id: string) {
+    if (!userID) {
+      throw new BadRequestException(
+        "You don't have permission to access invoices!",
+      );
+    }
+
     if (isNaN(parseInt(id))) {
       throw new BadRequestException('id must be a number!');
     }

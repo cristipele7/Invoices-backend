@@ -33,7 +33,7 @@ async function main() {
   };
   dueDate1.setDate(dueDate1.getDate() + 7);
   await prisma.invoice.createMany({
-    data: [data1, data1, data1, data1, data1],
+    data: [data1, data1, data1, data1, data1, data1, data1],
   });
 
   const dueDate2 = new Date();
@@ -47,7 +47,7 @@ async function main() {
     user_id: userOne.id,
   };
   await prisma.invoice.createMany({
-    data: [data2, data2, data2, data2, data2],
+    data: [data2, data2, data2, data2, data2, data2, data2],
   });
 
   const dueDate3 = new Date();
@@ -61,7 +61,7 @@ async function main() {
   };
   dueDate3.setDate(dueDate3.getDate() + 19);
   await prisma.invoice.createMany({
-    data: [data3, data3, data3, data3, data3],
+    data: [data3, data3, data3, data3, data3, data3, data3],
   });
 
   const dueDate4 = new Date();

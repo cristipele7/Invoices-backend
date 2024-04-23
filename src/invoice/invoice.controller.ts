@@ -42,7 +42,7 @@ export class InvoiceController {
   };
 
   @Post('/')
-  async test(@Body() body: { brackets: string }) {
+  async testRecursiceBrackets(@Body() body: { brackets: string }) {
     const brackets = body.brackets;
 
     let nrStart = 0;
